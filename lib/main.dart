@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 void main() {
+  // initialize처리
   runApp(
     DevicePreview(
       enabled: true,
       tools: [...DevicePreview.defaultTools],
-      builder: (context) => MyApp(),
+      builder: (context) => ResponsiveScaledBox(
+          width: MediaQuery.of(context).orientation == Orientation.portrait
+              ? 390
+              : 844,
+          child: MyApp()),
     ),
   );
 }
