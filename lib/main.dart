@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:flutter_stamp_card_app/view/authentication/tab_bar_view_sign_in.dart';
+import 'package:flutter_stamp_card_app/view/authentication/tab_bar_view_sign_up.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 void main() {
@@ -52,28 +54,35 @@ class _MyHomePageState extends State<MyHomePage> {
   //   });
   // }
 
-  static const List<Tab> _myTabs = <Tab>[
-    Tab(text: 'Sign In'),
-    Tab(text: 'Sign Up'),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Expanded(
-        child: DefaultTabController(
-          length: _myTabs.length,
-          child: Column(
-            children: [
-              const TabBar(tabs: [
-                Tab(text: 'Sign In'),
-                Tab(text: 'Sign Up'),
+      appBar: AppBar(
+        centerTitle: true,
+        title:
+            Text('StampCardApp', style: TextStyle(fontWeight: FontWeight.w400)),
+      ),
+      body: DefaultTabController(
+        length: 2,
+        child: Column(
+          children: [
+            TabBar(
+                labelColor: Colors.lightGreen,
+                unselectedLabelColor: Colors.black54,
+                indicatorColor: Colors.lightGreen,
+                labelStyle:
+                    TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                tabs: [
+                  Tab(text: '    Sign In    '),
+                  Tab(text: '    Sign Up    '),
+                ]),
+            Expanded(
+              child: TabBarView(children: [
+                TabBarViewSignIn(),
+                TabBarViewSignUp(),
               ]),
-              Expanded(
-                child: TabBarView(children: [SizedBox(), SizedBox()]),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
